@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-link to="/about">about</router-link> |
-    <img src="./assets/logo.png">
+    <router-link to="/Amount">学科计分器</router-link>
     <router-view/>
   </div>
 </template>
@@ -13,6 +13,9 @@ export default {
   name: 'App',
   components: {
     // HelloWorld
+  },
+  computed:{
+
   }
 }
 </script>

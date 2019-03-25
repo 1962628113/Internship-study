@@ -4,12 +4,13 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import HelloWorld from './components/helloWorld.vue'
+import Amount from './components/Amount.vue'
 const router=new Router({
   mode:'history',
   routes:[
-
-    { path: '/', redirect: '/HelloWorld'},
+    { path: '/', redirect: '/'},
     {'path':'/HelloWorld','name':'HelloWorld',component: HelloWorld},
+    {'path':'/Amount','name':'Amount',component: Amount},
     {
       path: '/about',
       name: 'about',
