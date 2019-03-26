@@ -2,6 +2,7 @@
   <div id="app">
     <router-link to="/about">about</router-link> |
     <router-link to="/Amount">学科计分器</router-link>
+    <router-link to="/bar">Go to Bar</router-link>
     <router-view/>
   </div>
 </template>

@@ -3,14 +3,45 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-import HelloWorld from './components/helloWorld.vue'
 import Amount from './components/Amount.vue'
-const router=new Router({
-  mode:'history',
-  routes:[
-    { path: '/', redirect: '/'},
-    {'path':'/HelloWorld','name':'HelloWorld',component: HelloWorld},
-    {'path':'/Amount','name':'Amount',component: Amount},
+
+const student = {
+  template: '<div>' +
+    '用户{{$route.params.id}}' +
+    '<br/>路径：{{$route.path}}' +
+    '<br/>{{$route.params}}' +
+    '<br/>{{$route.query}}' +
+    '<br/>{{$route.hash}}' +
+    '<br/>完整的路径{{$route.fullPath}}' +
+    '<br>路由名称：{{$route.name}}' +
+    '<br/>正在重定向的路由名称：{{$route.redirectedFrom}}' +
+    '</div>'
+}
+const User = {
+  props: ['id'],
+  template: '<div>user:{{ id}}</div>'
+}
+const Sidebar={
+  props: ['id'],
+  template: '<div>Sidebar:{{id}}</div>'
+}
+const SearchUser={
+  props: ['id'],
+  template: '<div>SearchUser:{{id}}</div>'
+}
+const router = new Router({
+  mode: 'history',
+  routes: [
+    {path: '/student/:id', name: 'student', component: student},
+    // {path:'/user/:id',name:'User',component: User},
+        {
+      path: '/user/:id',
+      components: { default: User },
+      props: { default: true}
+    },
+    // { path: '/search', component: SearchUser, props: (route) => ({ query: route.query.q })},
+    {path: '/', redirect: '/about'},
+    {'path': '/Amount', 'name': 'Amount', component: Amount},
     {
       path: '/about',
       name: 'about',
@@ -24,3 +55,5 @@ const router=new Router({
   ]
 })
 export default router
+
+
