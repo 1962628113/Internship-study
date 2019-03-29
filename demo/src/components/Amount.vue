@@ -22,7 +22,10 @@
     </div>
     <div class="Total"><button v-on:click="add()">添加</button><span>总分：{{Totalscore}}</span></div>
     <div class="Dividing-line"></div>
+
     <show v-for="(student,index) in students" :student="student" :index="index" />
+
+
   </div>
 </template>
 <script>

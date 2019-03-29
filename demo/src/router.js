@@ -4,7 +4,8 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import Amount from './components/Amount.vue'
-
+import bar from './bar.vue'
+import bvue from './components/b.vue'
 const student = {
   template: '<div>' +
     '用户{{$route.params.id}}' +
@@ -18,30 +19,33 @@ const student = {
     '</div>'
 }
 const User = {
-  props: ['id'],
+  // props: ['id'],
   template: '<div>user:{{ id}}</div>'
 }
-const Sidebar={
+const Sidebar = {
   props: ['id'],
   template: '<div>Sidebar:{{id}}</div>'
 }
-const SearchUser={
+const SearchUser = {
   props: ['id'],
   template: '<div>SearchUser:{{id}}</div>'
 }
+
+
 const router = new Router({
   mode: 'history',
   routes: [
+
+    // {path: '/bvue', props: {modal: router => ({a_data: router.query.a_data, b_data: router.query.b_data})},
+    //   components: {modal: bvue},
+    // },
     {path: '/student/:id', name: 'student', component: student},
     // {path:'/user/:id',name:'User',component: User},
-        {
-      path: '/user/:id',
-      components: { default: User },
-      props: { default: true}
-    },
+    {path: '/user/:id', components: {default: User}, props: {default: true}},
     // { path: '/search', component: SearchUser, props: (route) => ({ query: route.query.q })},
     {path: '/', redirect: '/about'},
-    {'path': '/Amount', 'name': 'Amount', component: Amount},
+    {path:'/bar',name:bar,component:bar},
+    {path: '/Amount', 'name': 'Amount', component: Amount},
     {
       path: '/about',
       name: 'about',

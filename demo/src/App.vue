@@ -2,7 +2,9 @@
   <div id="app">
     <router-link to="/about">about</router-link> |
     <router-link to="/Amount">学科计分器</router-link>
+    <router-link :to="{path:'/bvue',query:{a_data:[1,2,3],b_data:[4,5,6]}}">bvue</router-link>
     <router-link to="/bar">Go to Bar</router-link>
+    <router-view name="modal"/>
     <router-view/>
   </div>
 </template>
@@ -14,6 +16,11 @@ export default {
   name: 'App',
   components: {
     // HelloWorld
+  },
+  data(){
+    return {
+      price:''
+    }
   },
   computed:{
 
