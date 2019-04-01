@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <blog-post
+            v-for="post in posts"
+            v-bind:name="post"
+            v-bind:key="post.id"
+            v-bind:title="post.title"
+            v-bind:content="post.content"
+            v-bind:publishedAt="post.publishedAt"
+            v-bind:comments="post.comments"
+            v-bind:fontsize="fontsize"
+    ></blog-post>
+    <custom-input v-model="searchText"
+    @input="dd(arguments)"
+    ></custom-input>
+    <alert-box>
+        Something bad happened.
+    </alert-box>
+</div>
+
+</body>
+<script>
+    Vue.component('alert-box', {
+        template: `
+    <div class="demo-alert-box">
+      <strong>Error!</strong>
+      <slot></slot>
+    </div>
+  `
+    })
+    Vue.component('custom-input', {
+        props: ['value'],
+        template: `<input
+                  v-bind:value="value"
+             v-on:input="$emit('input', $event.target.value)"
+    >`
+    })
+    Vue.component('blog-post',{
+        props:['name','comments','fontsize'],
+        data(){
+            return{
+                da:''
+            }
+        },
+        computed:{
+            aa:function () {
+                this.da=this.fontsize+"px";
+            }
+        },
+        template:'<div >{{aa}}{{name}}<p v-bind:style="{fontSize:da}">{{comments}}</p>  </div> '
+    })
+    var app=new Vue({
+        el:'#app',
+        data:{
+            'fontsize': 20,
+            searchText:21321,
+            posts:[
+                {id:1,title:'num',content:'dad',publishedAt:'你好',comments:'大苏打撒旦'},
+                {id:2,title:'num',content:'dad',publishedAt:'你好',comments:'大苏打撒旦'},
+                {id:3,title:'num',content:'dad',publishedAt:'你好',comments:'大苏打撒旦'}
+            ]
+        },methods:{
+            dd:function (args) {
+                console.log(args[0])
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <span v-bind:title="message">鼠标悬停</span>
+  <div v-if="seen">能看见</div>
+  <ul>
+    <!--组件实例-->
+    <todo-item
+      v-for="item in grad"
+      v-bind:todo="item"
+      v-bind:key="item.id"
+      v-bind:aa="aa"
+    ></todo-item>
+  </ul>
+</div>
+</body>
+<script>
+  //定义组件
+  Vue.component('todo-item', {
+    props:['todo','aa'],
+    template:'<li>{{todo.id}}{{todo.text}}{{aa}}</li>'
+  })
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue!',
+      seen:true,
+      aa:131,
+      grad:[
+        { id: 0, text: '蔬菜' },
+        { id: 1, text: '奶酪' },
+        { id: 2, text: '随便其它什么人吃的东西' }]
+    },
+  })
+</script>
+</html>

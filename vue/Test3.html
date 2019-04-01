@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{aa()}}
+    <div
+            class="static"
+            v-bind:class="classObject"
+    ></div>
+   <p v-bind:style="styleObject">213123</p>
+    <div v-bind:style="aaObject">
+        <div v-bind:style="bbObject"></div>
+    </div>
+</div>
+</body>
+<script>
+    var app=new Vue({
+        el:'#app',
+        data: {
+            classObject:{
+                active:true,
+                'text-denger':false
+            },
+            styleObject:{
+                color:'green',
+                background:'#ccc'
+            },
+            aaObject:{
+                display:'flex',
+                backgroundColor:'blue',
+                width:'200px',
+                height:'100px',
+                justifyContent:'center',
+                // alignItems:'center'
+            },
+            bbObject:{
+                width:'100px',
+                height:'50px',
+                backgroundColor:'red',
+                alignSelf:'center',
+
+            }
+        },
+        methods:{
+          aa:function () {
+              console.log(this.classObject.active)
+          }
+        }
+    })
+</script>
+</html>

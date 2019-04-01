@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>Original message: "{{ message }}"</p>
+    <p>Computed reversed message: "{{ reversedMessage()}}"</p>
+</div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message:'hello'
+        },
+        methods:{
+            reversedMessage:function () {
+                return this.message.split('').reverse().join('-')
+            }
+        },
+        computed:{
+            reversedMessage:function () {
+                return this.message.split('').reverse().join('-')
+            }
+        }
+    })
+    console.log(app.reversedMessage)
+    app.message='nimenhao'
+    console.log(app.reversedMessage)
+</script>
+</html>

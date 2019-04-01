@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>Using mustaches: {{ rawHtml }}</p>
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+    <input type="text" id="Input" v-on:[eventname]="aa(this.id)">
+    <!--<input type="text" id="aa" onfocus="bb(this.id)">-->
+    <a :href="url">2312</a>
+</div>
+</body>
+<script>
+    var app=new Vue({
+        el:'#app',
+        data:{
+            rawHtml:'<span style="color: red">this is should red</span>',
+            eventname:'focus',
+            url:'http://www.baidu.com'
+        },
+        methods:{
+            aa:function (id) {
+               console.log(id)
+            }
+        }
+    })
+    // function bb(id) {
+    //     console.log(id)
+    // }
+</script>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+    {{aa}}
+    <div v-if="type === 'A'">
+        A
+    </div>
+    <div v-else-if="type === 'B'">
+        B
+    </div>
+    <div v-else-if="type === 'C'">
+        C
+    </div>
+    <div v-else>
+        Not A/B/C
+    </div>
+    <template v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username">
+    </template>
+    <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address">
+    </template>
+    <template>
+        <br><label>button</label>
+        <input type="button" v-on:click="cc(couter+=1)" value="切换登陆">
+    </template>
+    <div v-for="(value,key) in object">
+        <li>{{key}}:{{value}}</li>
+    </div>
+    <input v-model="message" placeholder="edit me">
+    <p>Message is: {{ message }}</p>
+    <textarea v-model="message" placeholder="add multiple lines"></textarea>
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{ checked }}</label>
+</div>
+
+</body>
+<script>
+    var app=new Vue({
+        el:'#app',
+        data:{
+            message:'',
+            type:'B',
+            checked:false,
+            loginType:'username',
+            index:0,
+            couter:0,
+            object: {
+                firstName: 'John',
+                lastName: 'Doe',
+                age: 30
+            }
+        },
+        methods:{
+            cc:function () {
+
+              if(this.couter%2==0){
+                  this.loginType='username'
+              }else{
+                  this.loginType='email'
+              }
+
+            }
+        },
+        computed:{
+            aa:function () {
+                var that=this;
+                var array=['A','B','C','D']
+                setInterval(function () {
+                    var index=Math.floor(Math.random()*4);
+                    that.type=array[index]
+                },200)
+            }
+        }
+    })
+</script>
+</html>
