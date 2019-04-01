@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <todo-list>
+        <template v-slot:todo="slotProps">
+            {{slotProps.user.firstName}}
+        </template>
+    </todo-list>
+    <!--<todo-list>-->
+        <!--<template v-slot:todo="{user,test}" >-->
+            <!--{{user.firstName}}-->
+        <!--</template>-->
+    <!--</todo-list>-->
+    <!--slotProps 可以随意命名-->
+    <!--slotProps 接取的是子组件标签slot上属性数据的集合所有v-bind:user="user"-->
+</div>
+</body>
+<script>
+    Vue.component('todo-list', {
+        data() {
+            return {
+                user:{
+                    lastName:"Zhang",
+                    firstName:"yue"
+                },
+                test:[1,2,3,4]
+            }
+        },
+        template: `
+          <div>
+          <slot name="todo" :user="user" :test="test">{{ user.lastName }}</slot>
+          </div>
+         `
+    })
+    var app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                // dynamicSlotName: "todo"
+            }
+        },
+    })
+</script>
+</html>

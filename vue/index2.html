@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <todo-list>
+        <!--<template v-slot:todo="dynamicSlotName">-->
+        <template v-slot:todo>
+            任意内容
+            <p>我是匿名插槽 </p>
+        </template>
+    </todo-list>
+</div>
+</body>
+<script>
+    Vue.component('todo-list', {
+        template: `
+          <div>
+          <slot name="todo"></slot>
+          </div>
+         `
+    })
+    var app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                dynamicSlotName: "todo"
+            }
+        },
+    })
+</script>
+</html>

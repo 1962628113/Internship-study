@@ -28,7 +28,7 @@
     </child>
     <list-item :lists="nameList">
         <template slot-scope="a">
-            {{a}}
+            {{a.list}}{{a.number}}
             <div v-if="a.list.id==1">你好：{{a.list.name}}</div>
             <!--<div v-if='a.bbbbb.id==1'>你好：<span>{{a.bbbbb.name}}</span></div>-->
             <!--<div v-else>{{a.bbbbb.name}}</div>-->
@@ -39,11 +39,16 @@
 <script>
     Vue.component('list-item',{
         props:['lists'],
+        data(){
+            return {
+                number:123
+            }
+        },
         template:`
             <div>
                 <ul>
                     <li v-for="list in lists">
-                        <slot v-bind:list="list"></slot>
+                        <slot v-bind:list="list" v-bind:number="number"></slot>
                     </li>
                 </ul>
             </div>
