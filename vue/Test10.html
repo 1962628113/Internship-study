@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #app {
+            width: 50%;
+            margin:  0 auto;
+        }
+        input {
+            border:1px solid darkslategray;
+        }
+    </style>
+</head>
+<body>
+<div id="app">　　
+    <child v-on:click.native="handleClick" ></child>
+    <childone v-on:focus.native="chidfocus" v-model="childText" @change.native="childchange()" @input="childvalue(arguments)"/>
+</div>
+</body>
+<script>
+    Vue.component('child',{
+        template:'<div>hello</div>'
+    })
+    Vue.component('childone',{
+        inheritAttrs: false,
+        props: ['label', 'value'],
+        computed: {
+            inputListeners: function () {
+                var vm = this
+                // `Object.assign` 将所有的对象合并为一个新对象
+                return Object.assign({},
+                    // 我们从父级添加所有的监听器
+                    this.$listeners,
+                    // 然后我们添加自定义监听器，
+                    // 或覆写一些监听器的行为
+                    {
+                        // 这里确保组件配合 `v-model` 的工作
+                        input: function (event) {
+                            vm.$emit('input', event.target.value)
+                        },
+                        change:function (event) {
+                            vm.$emit('change',event.target.value)
+                        }
+                    }
+                )
+            }
+        },
+        template:'<label><input v-bind="$attrs" v-bind:value="value" v-on="inputListeners" /></label>'
+    })
+    var app=new Vue({
+        el:'#app',
+        data:{
+            childText:''
+        },
+        methods:{
+            handleClick:function() {
+                alert(1);
+            },
+            chidfocus:function () {
+                console.log('鼠标获得焦点')
+            },
+            childchange:function () {
+                console.log('')
+            },
+            childvalue:function (args) {
+                console.log(args[0])
+            }
+        }
+    })
+</script>
+</html>

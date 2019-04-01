@@ -7,26 +7,35 @@
 </head>
 <body>
 <div id="app">
-    <input v-model="aa">
-<aa v-bind:title="title" v-bind:likes="likes" v-bind:isbool="isbool"></aa>
+   <base-checkbox v-model="lovingVue" v-bind:title="title"></base-checkbox>
 </div>
 </body>
 <script>
-    Vue.component('aa',{
-        props: {
-            title: String,
-            likes: Number,
-            isbool: Boolean,
+    Vue.component('base-checkbox', {
+        model: {
+            prop: 'checked',
+            event: 'change'
         },
-        template:'<div>{{isbool}}</div>'
+        props: {
+            checked: Boolean,
+            title:String
+        },
+        template: `<div>
+ <input
+      type="checkbox"
+      v-bind:checked="checked"
+      v-on:change="$emit('change', $event.target.checked)"
+      v-bind:title="title"
+    >{{title}}
+</div>
+
+  `
     })
     var app=new Vue({
         el:'#app',
        data:{
-           title:'hello vue',
-           likes:2,
-           isbool:true,
-           aa:123
+           lovingVue:false,
+           title:'hello world'
        }
     })
 </script>
