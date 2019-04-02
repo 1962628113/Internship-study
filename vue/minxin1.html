@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--<show></show>-->
+    <componentA/>
+</div>
+</body>
+<script>
+    var mixin = {
+        data() {
+            return {
+                number: 123,
+                string: 'wqs'
+            }
+        },
+        created: function () {
+            console.log('混入对象的钩子被调用' + this.number + this.string)
+        },
+        methods: {
+            foo: function () {
+                console.log(this.number + '混乱')
+            },
+            conflicting: function () {
+                console.log(this.string + '混乱111111111111')
+            }
+        },
+    }
+
+    var componenta={
+        data() {
+            return {
+
+            }
+        },
+        mixins: [mixin],
+        created: function () {
+            console.log('组件钩子被调用')
+            console.log('子组件')
+            console.log(this.$data)
+        },
+        methods: {
+            bar: function () {
+                return this.conflicting
+            },
+            foo: function () {
+                console.log(this.number + '组件')
+            },
+        },
+        template:`
+         <div>{{number}}</div>
+        `
+    }
+    var app=new Vue({
+        el:'#app',
+        data(){
+            return{
+
+            }
+        },
+        mixins: [mixin],
+        components:{
+            componenta
+        },
+        created:function(){
+            console.log('父组件')
+            console.log(this.$data)
+        }
+    })
+
+
+    // vm.bar();
+    // vm.foo();
+    // vm.conflicting();
+    // Vue.mixin({
+    //     created: function () {
+    //         var myOption = this.$options.myOption
+    //         if (myOption) {
+    //             console.log(myOption)
+    //         }
+    //     }
+    // })
+    //
+    // new Vue({
+    //     myOption: 'hello!'
+    // })
+</script>
+</html>
