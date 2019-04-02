@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <e v-bind:is-show="isShow"></e>
+    <button @click="isShow=!isShow">切换</button>
+</div>
+</body>
+<script>
+    Vue.component('e', {
+        render: function (createElement) {
+            if (this.isShow) {
+                return createElement('p', 'isShow 为 true');
+            } else {
+                return createElement('p', 'isShow 为 false');
+            }
+        },
+        props: {
+            isShow: {
+                type: Boolean,
+                default: false
+            }
+        }
+    });
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isShow: false
+        }
+    });
+</script>
+</html>

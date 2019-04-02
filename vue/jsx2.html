@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="handleClick">显示列表</button>
+    <ele v-bind:list="list" :is-show="isShow"></ele>
+</div>
+</body>
+<script>
+    Vue.component('ele', {
+        render: function (createElement) {
+            if (this.list.length) {
+                return createElement('ul', this.list.map(function (item) {
+                    return createElement('li', item)
+                }))
+            } else {
+                return createElement('p', '列表为空')
+            }
+        },
+        props: {
+            list: {
+                type: Array,
+                default:[]
+            }
+        }
+    });
+    new Vue({
+        el: '#app',
+        data: {
+            list: [],
+            'isShow':false
+        },
+        methods: {
+            handleClick: function () {
+                this.list = ['《三国演义》', '《水浒传》', '《西游记》',]
+            }
+        }
+    });
+
+</script>
+</html>

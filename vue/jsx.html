@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+
+    <anchored-heading></anchored-heading>
+</div>
+</body>
+<script>
+   var app=new Vue({
+       el:'#app',
+       data(){
+           return {
+               blogTitle:1231,
+               items:[{id:1,name:'wq'},{id:2,name:'ww'}
+                 ]
+           }
+       },
+       // render: function (createElement) {
+       //     return createElement('h1', this.blogTitle)
+       // },
+       render: function (createElement) {
+           return createElement('div',
+               Array.apply(null, { length: 20 }).map(function () {
+                   return createElement('p', 'hi')
+               })
+           )
+       }
+   })
+   var getChildrenTextContent = function (children) {
+       return children.map(function (node) {
+           return node.children
+               ? getChildrenTextContent(node.children)
+               : node.text
+       }).join('')
+   }
+
+   Vue.component('anchored-heading', {
+       render: function (createElement) {
+           // 创建 kebab-case 风格的ID
+           var headingId = getChildrenTextContent(this.$slots.default)
+               .toLowerCase()
+               .replace(/\W+/g, '-')
+               .replace(/(^-|-$)/g, '')
+
+           return createElement(
+               'h' + this.level,
+               [
+                   createElement('a', {
+                       attrs: {
+                           name: headingId,
+                           href: '#' + headingId
+                       }
+                   }, this.$slots.default)
+               ]
+           )
+       },
+       props: {
+           level: {
+               type: Number,
+               required: true
+           }
+       },
+       template:`
+      `
+   })
+</script>
+</html>
