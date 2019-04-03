@@ -8,22 +8,22 @@
 </head>
 <body>
 <div id="app">
-    <p>{{ message|capitalize}}</p>
-    <div v-bind:id="datum|capitalize"></div>
+    <div v-bind:id="message|capitalize('a','b')|gl"></div>
 </div>
 </body>
 <script>
-    new Vue({
+    var app=new Vue({
         el:"#app",
         data:{
             message:"pwd",
-            datum:"www"
         },
-        filters: {
-            capitalize: function (value) {
-                if (!value) return ''
-                value = value.toString()
-                return value.charAt(0).toUpperCase() + value.slice(1)
+        filters:{
+            capitalize:function(value,x,y){
+                return value+x+y;
+            },
+            gl:function(value){
+                value=value.toString();
+                return value.toUpperCase();
             }
         }
     })
