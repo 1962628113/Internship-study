@@ -3,10 +3,15 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import hello from '@/components/hello'
 import mycomponent from '@/components/mycomponent'
+import increment from '@/components/increment'
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/',
+      redirect: '/increment'
+    },
     {
       path: '/',
       name: 'HelloWorld',
@@ -21,6 +26,11 @@ export default new Router({
       path: '/mycomponent',
       name: 'mycomponent',
       component: mycomponent
+    },
+    {
+      path: '/increment',
+      name: 'increment',
+      component: increment
     }
   ]
 })

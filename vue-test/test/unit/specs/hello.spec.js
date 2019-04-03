@@ -1,26 +1,6 @@
 import Vue from 'vue'
 import hello from '@/components/hello'
 
-// 挂载元素并返回已渲染的文本的工具函数
-function getRenderedText (Component, propsData) {
-  const Constructor = Vue.extend(Component)
-  const vm = new Constructor({ propsData: propsData }).$mount()
-  return vm.$el.textContent
-}
-
-describe('MyComponent', () => {
-  it('renders correctly with different props', () => {
-    expect(getRenderedText(MyComponent, {
-      msg: 'Hello'
-    })).toBe('Hello')
-
-    expect(getRenderedText(MyComponent, {
-      msg: 'Bye'
-    })).toBe('Bye')
-  })
-})
-
-
 describe('hello', () => {
   // 检查原始组件选项
   it('has a created hook', () => {
@@ -32,6 +12,7 @@ describe('hello', () => {
     expect(typeof hello.data).toBe('function')
     const defaultData = hello.data()
     expect(defaultData.message).toBe('hello!')
+    expect(defaultData.price).toBe(123)
   })
 
   // 检查 mount 中的组件实例

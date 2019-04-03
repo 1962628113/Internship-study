@@ -10,7 +10,7 @@ export default {
   data () {
     return {
       message: 'hello!',
-      price: 23
+      price: 123
     }
   },
   created () {
