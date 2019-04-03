@@ -1,16 +1,22 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-
+    {{count}}
+    <button @click="increment">自增</button>
   </div>
 </template>
-
 <script>
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      count: 0
+    }
+  },
+  methods: {
+    increment: function () {
+      this.count++
     }
   }
 }
