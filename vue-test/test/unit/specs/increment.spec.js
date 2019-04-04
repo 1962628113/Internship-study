@@ -32,8 +32,9 @@ describe('increment', () => {
 
     vm._watcher.run()
     window.setTimeout(()=>{
-      // expect(Number(vm.$el.querySelector('.num').textContent)).toEqual(1)
+      var number=Number(vm.$el.querySelector('.num').textContent);
+      expect(number).toEqual(1)
       done()
-    },1000)
+    },1001)
   })
 })

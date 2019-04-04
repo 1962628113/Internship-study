@@ -19,7 +19,7 @@ export default {
     increment () {
       this.count++
     },
-    incrementByAsync () {
+    async incrementByAsync () {
       window.setTimeout(() => {
         this.count++
       }, 1000)

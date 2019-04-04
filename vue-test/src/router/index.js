@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import hello from '@/components/hello'
 import mycomponent from '@/components/mycomponent'
 import increment from '@/components/increment'
+import computedNumber from '@/components/computed'
 Vue.use(Router)
 
 export default new Router({
@@ -31,6 +32,11 @@ export default new Router({
       path: '/increment',
       name: 'increment',
       component: increment
+    },
+    {
+      path: '/computed',
+      name: 'computedNumber',
+      component: computedNumber
     }
   ]
 })
