@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #app {
+            width: 50%;
+            margin:  0 auto;
+        }
+        input {
+            border:1px solid darkslategray;
+        }
+    </style>
+</head>
+<body>
+<div id="app">　　
+    <child />
+</div>
+</body>
+<script>
+    Vue.component('child',{
+        template:`<div>hello
+     <input type="text">
+     <p>213123</p>
+     <p>wqeewqe</p>
+</div>`
+    })
+    var app=new Vue({
+        el:'#app',
+    })
+</script>
+</html>

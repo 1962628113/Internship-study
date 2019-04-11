@@ -31,9 +31,13 @@ describe('increment', () => {
     button.dispatchEvent(clickEvent)
 
     vm._watcher.run()
+
+    var number=Number(vm.$el.querySelector('.num').textContent);
+    expect(number).toEqual(0);
+
     window.setTimeout(()=>{
-      var number=Number(vm.$el.querySelector('.num').textContent);
-      expect(number).toEqual(1)
+      var number1=Number(vm.$el.querySelector('.num').textContent);
+      expect(number1).toEqual(1)
       done()
     },1001)
   })
